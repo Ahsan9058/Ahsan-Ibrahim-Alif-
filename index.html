@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahsan Ibrahim Alif | Web Designer</title>
+  <style>
+    :root {
+      --primary: #6e48aa;
+      --secondary: #9d50bb;
+      --dark: #10002b;
+      --accent: #ffd166;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: white;
+      background: var(--dark);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      z-index: 10;
+      padding: 15vh 5vw;
+      max-width: 800px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .tagline {
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    /* Contact Button */
+    .btn-contact {
+      display: inline-block;
+      padding: 1rem 2.2rem;
+      background: transparent;
+      color: white;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-contact:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+    /* Gradient Background */
+    #cursor-gradient {
+      position: fixed;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--primary) 0%, var(--secondary) 70%, transparent 100%);
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.3;
+      z-index: 1;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 10;
+      padding: 8vh 5vw;
+      background: rgba(16, 0, 43, 0.7);
+    }
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    /* Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    /* Links */
+    a:not(.btn-contact) {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    a:not(.btn-contact):hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+    /* Desktop */
+    @media (min-width: 768px) {
+      .hero { padding: 20vh 10vw; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      #cursor-gradient { width: 400px; height: 400px; opacity: 0.4; }
+      section { padding: 10vh 10vw; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Gradient Background -->
+  <div id="cursor-gradient"></div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Ahsan Ibrahim Alif</h1>
+    <p class="tagline">Web Designer using <a href="https://webflow.com" target="_blank" style="color: var(--accent); font-weight: bold;">Webflow</a> & <a href="https://figma.com" target="_blank" style="color: var(--accent); font-weight: bold;">Figma</a></p>
+    <a href="#contact" class="btn-contact">Contact Me</a>
+  </header>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 style="font-size: clamp(1.5rem, 5vw, 2.5rem);">My Work</h2>
+    <div class="grid">
+      <a href="https://example.com/project1" target="_blank" class="card">
+        <h3 style="font-size: 1.3rem;">E-Commerce Redesign</h3>
+        <p>Webflow + Figma</p>
+      </a>
+      <a href="https://example.com/project2" target="_blank" class="card">
+        <h3 style="font-size: 1.3rem;">Portfolio Website</h3>
+        <p>Figma to Webflow</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 style="font-size: clamp(1.5rem, 5vw, 2.5rem);">Let's Collaborate</h2>
+    <div class="grid">
+      <a href="mailto:hello@ahsanalif.com" class="card">
+        <h3 style="font-size: 1.3rem;">Email</h3>
+        <p>halif9058@gmail.com</p>
+      </a>
+      <a href="https://www.linkedin.com/in/alif-hossain-ba4400355?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
+" target="_blank" class="card">
+        <h3 style="font-size: 1.3rem;">LinkedIn</h3>
+        <p>linkedin.com/in/yourprofile</p>
+      </a>
+      <a href="https://dribbble.com/ahsan65" target="_blank" class="card">
+        <h3 style="font-size: 1.3rem;">Dribbble</h3>
+        <p>dribbble.com/yourprofile</p>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Gradient follows cursor/touch
+    document.addEventListener('mousemove', moveGradient);
+    document.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      moveGradient({
+        clientX: e.touches[0].clientX,
+        clientY: e.touches[0].clientY
+      });
+    });
+
+    function moveGradient(e) {
+      const gradient = document.getElementById('cursor-gradient');
+      gradient.style.left = e.clientX + 'px';
+      gradient.style.top = e.clientY + 'px';
+    }
+  </script>
+</body>
+</html>
